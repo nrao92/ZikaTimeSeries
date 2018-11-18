@@ -52,6 +52,13 @@
     		position: absolute;
     		right: 8px;
 	}
+        .title {
+        padding: 6px 8px;
+        font: 14px/16px Cambria, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 5px;
       </style>
       
   </head>
@@ -184,7 +191,7 @@
           
           
         function createSliderUI(timestamps) {
-              var sliderControl = L.control({ position: 'topleft'} ); // position of the slider
+              var sliderControl = L.control({ position: 'topright'} ); // position of the slider
                                 // Another use of L.control :)
               sliderControl.onAdd = function(map) {
                 //initialize a range slider with mousedown control
@@ -220,7 +227,7 @@
 
               // Add labels to the time slider when the map first loaded
               function createTimeLabel(startTimestamp) {
-                var temporalLegend = L.control({position: 'topleft' }); // same position as the slider
+                var temporalLegend = L.control({position: 'topright' }); // same position as the slider
                                    // One more use of L.control !!
                 temporalLegend.onAdd = function(map) {
                   var output = L.DomUtil.create("output", "temporal-legend");
@@ -287,6 +294,15 @@
 		legend.addTo(map);  
 
 	} // end createLegend();
+          var title = L.control({position: 'topright'}); // position of the title
+
+            title.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'title'); // create a div with a class "title"
+            this._div.innerHTML = "<h3>Monthly Time Series of Travel Associated Zika Cases in the US, 2016 </h3>";  // Title text, may use html to customize
+            return this._div;
+            };
+
+                title.addTo(map);
     
       </script>
 
